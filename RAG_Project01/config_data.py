@@ -1,15 +1,15 @@
-md5_path = "./RAG_Project01/md5.text"
+md5_path = "./RAG_data/md5.text"
 
 # Chroma 
 collection_name = "rag"
-persist_directory = "./RAG_Project01/chroma_db"
+persist_directory = "./RAG_data/chroma_db"
 
 
 # 文本分割器
-chunk_size = 1000
-chunk_overlap = 100
-separators = ["\n", "\n\n", ".", "。", "!", "?", ",", " ", ""]
-max_split_char_number = 1000    # 降低阈值，让短文本也能被处理
+chunk_size = 1000         # 分割后的最大文本长度   
+chunk_overlap = 100       # 连续文本段之间的字符重叠数量
+separators = ["\n", "\n\n", ".", "。", "!", "?", ",", " ", ""]    # 自然段落的划分符号
+max_split_char_number = 1000     # 文本分割的阈值,也就是当文本超过这个阈值才会被分割
 
 # as_retriever检索器使用
 similarity_threshold = 1  # 返回前3个最相关的结果

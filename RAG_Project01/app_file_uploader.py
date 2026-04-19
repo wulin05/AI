@@ -21,9 +21,9 @@ uploaded_file = st.file_uploader(
     accept_multiple_files=False   #False只允许上传单个文件,不接受多文件上传
 )
 
-# 通过注释知道,直接创建KnowledgeBaseService类对象的话,每次页面有更新(上传文件),就会重载,每次都在创建这个类对象,影响性能
+# 通过注释知道,直接创建KnowledgeBaseService类对象的话,每次页面的元素有任何更新(上传文件),就会代码重新跑一遍,每次都在创建这个类对象,影响性能
 # service = KnowledgeBaseService()
-# 所以可以将该状态保存到session_state中
+# 所以为了解决这个问题,streamlit原生提供了session_state(会话状态记录器),用于保存状态!
 if "service" not in st.session_state:
     st.session_state["service"] = KnowledgeBaseService()
 

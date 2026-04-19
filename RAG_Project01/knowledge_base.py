@@ -101,15 +101,19 @@ class KnowledgeBaseService(object):
         """
         # 根据AI的说法,更安全的写法:
         # 遍历 knowledge_chunks 中的每一个元素（但我们不关心元素内容，所以用 _ 表示忽略），每次都把 metadata 放进新列表中。
-        metadatas = [
-            {
-                "source": filename,
-                "create_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "operator": "啤酒泡泡"
-            }
-            for _ in knowledge_chunks    
-        ]
+        self.chroma.add_texts(
+            knowledge_chunks,
+            metadatas = [
+                {
+                    "source": filename,
+                    "create_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                    "operator": "啤酒泡泡"
+                }
+                for _ in knowledge_chunks    
+            ]
+        )
         """
+        # 向量数据库会同时存储三样东西：向量(embedding),原始文本(page_content),元数据(metadata)
         metadata = {
             "source": filename,
             "create_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -121,7 +125,7 @@ class KnowledgeBaseService(object):
             metadatas = [metadata for _ in knowledge_chunks]
         )
 
-        # 当不在向量数据库的内容存到向量数据库后,那么这时候要将该内容的md5值保存到md5.text中,用于下次如果是相同的内容,就可以根据md5值就不在保存了
+        # 经过上面的步骤后,文本/向量/元数据存储到向量数据库后,那么这时候要将该内容的md5值保存到md5.text中,用于下次如果是相同的内容,就可以根据md5值就不在保存了
         save_md5(md5_hex)
 
         return "[成功]内容已成功载入向量库"

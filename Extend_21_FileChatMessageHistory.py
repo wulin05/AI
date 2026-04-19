@@ -99,7 +99,7 @@ def get_history(session_id):
     return FileChatMessageHistory(session_id, "./chat_history")
 
 
-# 通过RunnableWithMessageHistory获取一个新的带有历史记录功能的chain
+# 通过RunnableWithMessageHistory获取一个新的带有历史记录功能的增强chain
 conversation_chain = RunnableWithMessageHistory(
     bash_chain,       # 被附加历史消息的Runnable,通过是chain
     get_history,             # 获取指定会话ID的历史会话的函数: 这次不是InMemoryChatMessageHistory的类对象了,是
@@ -109,7 +109,7 @@ conversation_chain = RunnableWithMessageHistory(
 
 
 if __name__=='__main__':
-    # 如下固定格式,目的: 添加LangChain的配置,为当前程序配置所属的session_id! 如果key用sid的话, get_history函数要用sid形参以及history_factory_config=[("sid", "sid")]要追加这行！！！！
+    # 如下固定格式,目的: 添加LangChain的配置,为当前程序配置所属的session_id! 如果key用sid的话, get_history函数要用sid形参以及要追加这行history_factory_config=[("sid", "sid")]！！！！
     # session_config = {"configurable": {"sid": "user_001"}}  
     session_config = {"configurable": {"session_id": "user_001"}}
 

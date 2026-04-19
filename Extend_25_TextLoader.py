@@ -2,6 +2,8 @@
 除了前面 提到的3个Loader以外,还有一个基本的加载器: TextLoader,它是一个非常基础的加载器,可以加载文本文件,并将文本内容封装为Document对象,
 它没有特定的解析功能,所以它适用于各种文本格式的文件,包括JSON、CSV、XML等,只要你能将这些文件转换为纯文本格式,就可以使用TextLoader来加载它们.
 TextLoader返回仅有一个Document对象的list。
+
+注意, langchain_text_splitters一般是安装了的,如果没有的话,就使用pip install angchain_text_splitters 包即可！
 """
 from posixpath import sep
 

@@ -50,6 +50,7 @@ chroma_db/
 vector_stores/
 */chroma_db/
 */vector_stores/
+chroma_langchain_db/
 
 # Images and media
 *.png
