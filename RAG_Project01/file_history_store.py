@@ -1,8 +1,9 @@
 import os, json
-from langchain_classic.schema import BaseMessage
-from langchain_core.messages import message_to_dict, messages_from_dict
+# from langchain_classic.schema import BaseMessage  # langchain旧版（v0.1 及以前）
+from langchain_core.messages import BaseMessage, message_to_dict, messages_from_dict
 from langchain_core.chat_history import BaseChatMessageHistory
 
+# print(BaseMessage.__module__)  # 输出: langchain_core.messages,确认包来源是否正确
 
 # 就将之前的InMemoryChatMessageHistory用下面的文件方式的来读取,进而进行处理....
 def get_history(session_id):

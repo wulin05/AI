@@ -3,8 +3,8 @@ from xml.dom.minidom import Document
 from langchain_community.embeddings import DashScopeEmbeddings
 import config_data as config
 from vector_stores import VectorStoreService
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_openai import ChatOpenAI
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough, RunnableWithMessageHistory
 from langchain_core.documents import Document
 from langchain_core.output_parsers import StrOutputParser
@@ -23,7 +23,7 @@ class RagService(object):
 
         self.prompt_template = ChatPromptTemplate.from_messages(
             [
-                ("system", "以我提供的已知参考资料为主, 简洁和专业的回答用户问题。参考资料: {context}。"),
+                ("system", "以我提供的已知参考资料为主,简洁和专业的回答用户问题。如果参考资料跟提问无关,请忽视。参考资料: {context}。"),
                 ("system", "并且我提供用户的对话历史记录,如下:"),
                 MessagesPlaceholder("history"),
                 ("user", "请回答用户提问: {input}")
@@ -92,8 +92,8 @@ class RagService(object):
     
 if __name__ == '__main__':
     # session_id的配置,具体查看Extend_21的代码
-    session_config = {"configurable": {"session_id": "linwu01"}}
+    session_config = {"configurable": {"session_id": "linwu02"}}
 
     # res = RagService().chain.invoke({"input": "我身高168cm,体重120斤,尺码推荐!"}, session_config)
-    res = RagService().chain.invoke({"input": "我身高180cm,体重160斤,尺码推荐!"}, session_config)
+    res = RagService().chain.invoke({"input": "我身高168cm,体重130斤,尺码推荐!"}, session_config)
     print(res)

@@ -1,8 +1,8 @@
-md5_path = "./RAG_data/md5.text"
+md5_path = "./md5.text"
 
 # Chroma 
 collection_name = "rag"
-persist_directory = "./RAG_data/chroma_db"
+persist_directory = "./chroma_db"
 
 
 # 文本分割器
@@ -16,4 +16,11 @@ similarity_threshold = 1  # 返回前3个最相关的结果
 
 # 向量存储
 embedding_model_name = "text-embedding-v4"
-chat_model_name = "qwen3-max"
+chat_model_name = "qwen-max"
+
+# 将session_config放到这边
+session_config = {
+    "configurable": {
+        "session_id": "linwu"
+    }
+}

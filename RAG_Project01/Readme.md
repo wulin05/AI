@@ -15,3 +15,7 @@ streamlit run .\app_file_uploader.py
 ## 构建在线流程开发
 
 ![alt text](image-1.png)
+
+```shell
+streamlit run .\app_qa.py
+```
