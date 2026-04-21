@@ -99,9 +99,9 @@ def get_history(session_id):
     return FileChatMessageHistory(session_id, "./chat_history")
 
 
-# 通过RunnableWithMessageHistory获取一个新的带有历史记录功能的增强chain
+# 通过 RunnableWithMessageHistory() 获取一个新的带有历史记录功能的增强链
 conversation_chain = RunnableWithMessageHistory(
-    bash_chain,       # 被附加历史消息的Runnable,通过是chain
+    bash_chain,              # 附加历史消息的普通chain
     get_history,             # 获取指定会话ID的历史会话的函数: 这次不是InMemoryChatMessageHistory的类对象了,是
     input_messages_key="input",      # 声明用户输入消息在模板中的占位符
     history_messages_key="chat_history",   # 声明历史消息在模板中的占位符

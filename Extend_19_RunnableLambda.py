@@ -7,19 +7,21 @@ import os
 
 # str_parser 是将 AIMessage 类对象转换成 str
 str_parser = StrOutputParser()
+
 # json_parser 是将 AIMessage 类对象转换成字典 dict
 # json_parser = JsonOutputParser()
+
 # 不用上面的json_parser的解析器了,用自定义lambda函数
 my_func = RunnableLambda(lambda ai_msg: {"name": ai_msg})
 
 model = ChatOpenAI(
-    # model="qwen3-max",
-    # api_key=os.getenv("DASHSCOPE_API_KEY"),
-    # base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model="qwen3-max",
+    api_key=os.getenv("DASHSCOPE_API_KEY"),
+    base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
 
-    model="kimi-k2.5",
-    api_key=os.getenv("CODING_API_KEY"),
-    base_url="https://coding.dashscope.aliyuncs.com/v1"
+    # model="kimi-k2.5",
+    # api_key=os.getenv("CODING_API_KEY"),
+    # base_url="https://coding.dashscope.aliyuncs.com/v1"
 )
 
 frist_prompt = PromptTemplate.from_template(
